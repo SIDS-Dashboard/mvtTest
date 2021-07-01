@@ -7,7 +7,7 @@ mapboxgl.accessToken =
     //style: 'mapbox://styles/mapbox/light-v10', //?optimize=true
     style: 'mapbox://styles/mapbox/light-v10', 
     center: [-71.4, 19.1], // starting position [lng, lat]
-    zoom: 7,
+    zoom: 9,
     //pitch: 55
   });
 
