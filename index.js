@@ -20,9 +20,12 @@ mapboxgl.accessToken =
 
   })
 
+map.on('move', function() {
+  console.log(map.getZoom())
+})
 
-
-
+var breaks = []
+var colors = ['#edf8fb', '#b2e2e2','#66c2a4','#2ca25f', '#006d2c' ]
 
 
 
@@ -32,7 +35,7 @@ function add1km() {
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-    //'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
+      //'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
     'https://sebastian-ch.github.io/sidsDataTest/data/tesg/{z}/{x}/{y}.pbf'
     ],
     'minzoom': 0,
@@ -42,18 +45,26 @@ function add1km() {
     map.addLayer(
       {
       'id': 'hex',
-      'type': 'line',
+      'type': 'fill',
       'source': 'hex',
       'source-layer': 'drnew',
-      'layout': {
-      'line-cap': 'round',
-      'line-join': 'round'
-      },
+      'filter': ['>=', '1b2', 0],
+      
       'paint': {
-      'line-opacity': 0.6,
-      'line-color': 'rgb(53, 175, 109)',
-      'line-width': 2
-      }
+        'fill-color': [
+          'interpolate',
+          ['linear'],
+          ['get', '1b2'],
+          .011, colors[0],
+          .028, colors[1],
+          .049, colors[2],
+          .079, colors[3],
+          .199, colors[4],
+          
+          ],
+        'fill-opacity': 0.8,
+        
+        }
       },
       );
 
