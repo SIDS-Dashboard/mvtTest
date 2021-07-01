@@ -5,7 +5,7 @@ mapboxgl.accessToken =
   const map = new mapboxgl.Map({
     container: "map", // container ID
     //style: 'mapbox://styles/mapbox/light-v10', //?optimize=true
-    style: 'mapbox://styles/mapbox/satellite-streets-v11', 
+    style: 'mapbox://styles/mapbox/light-v10', 
     center: [-71.4, 19.1], // starting position [lng, lat]
     zoom: 7,
     //pitch: 55
@@ -32,7 +32,7 @@ function add1km() {
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-    'http:/localhost:8080/tiles/{z}/{x}/{y}'
+    'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
     ],
     'minzoom': 0,
     'maxzoom': 10
@@ -43,7 +43,7 @@ function add1km() {
       'id': 'hex',
       'type': 'line',
       'source': 'hex',
-      'source-layer': 'hexid',
+      'source-layer': 'drnew',
       'layout': {
       'line-cap': 'round',
       'line-join': 'round'
@@ -57,6 +57,7 @@ function add1km() {
       );
 
 
+      console.log(map.getStyle().layers)
 
 }
 
