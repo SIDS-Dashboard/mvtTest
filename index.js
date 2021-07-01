@@ -32,7 +32,8 @@ function add1km() {
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-    'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
+    //'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
+    'https://github.com/SIDS-Dashboard/mvtTest/tree/main/tesg/{z}/{x}/{y}.pbf'
     ],
     'minzoom': 0,
     'maxzoom': 10
