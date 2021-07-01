@@ -33,7 +33,7 @@ function add1km() {
     'type': 'vector',
     'tiles': [
     //'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
-    'https://github.com/SIDS-Dashboard/mvtTest/tree/main/tesg/{z}/{x}/{y}.pbf'
+    'http://cors.io/https://github.com/SIDS-Dashboard/mvtTest/tree/main/tesg/{z}/{x}/{y}.pbf'
     ],
     'minzoom': 0,
     'maxzoom': 10
