@@ -32,11 +32,31 @@ var colors = ['#edf8fb', '#b2e2e2','#66c2a4','#2ca25f', '#006d2c' ]
 function add1km() {
   console.log('hi')
 
+
+  var match = ['match', ['get', 'hexid']]
+
+  /*d3.csv('hex1.csv').then(function(data){
+
+    data.forEach(function(row) {
+
+      var green = row['1a2'] * 255;
+      var color = 'rgb(0, ' + green + ', 0)';
+      
+      match.push(row['code'], color);
+
+
+
+    }) */
+
+  
+
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-      //'http://localhost:8080/tesg/{z}/{x}/{y}.pbf'
-    'https://sebastian-ch.github.io/sidsDataTest/data/tesg/{z}/{x}/{y}.pbf'
+      'http://raw.githubusercontent.com/sebastian-ch/mvtTest/master/t/{z}/{x}/{y}.pbf'
+      //'http://localhost:8080/t/{z}/{x}/{y}.pbf'
+      //'http://localhost:8080/tiles5/{z}/{x}/{y}.pbf'
+    //'https://sebastian-ch.github.io/sidsDataTest/data/tesg/{z}/{x}/{y}.pbf'
     ],
     'minzoom': 0,
     'maxzoom': 10
@@ -47,8 +67,11 @@ function add1km() {
       'id': 'hex',
       'type': 'fill',
       'source': 'hex',
-      'source-layer': 'drnew',
-      'filter': ['>=', '1b2', 0],
+      //'source-layer': 'drnew',
+      'source-layer': 'hex1',
+      'min-zoom': 6,
+      'max-zoom': 10,
+      //'filter': ['>=', '1b2', 0],
       
       'paint': {
         'fill-color': [
@@ -62,13 +85,14 @@ function add1km() {
           .199, colors[4],
           
           ],
+          //'fill-color': match,
         'fill-opacity': 0.8,
         
         }
       },
       );
 
-
+   // })
       console.log(map.getStyle().layers)
 
 }
