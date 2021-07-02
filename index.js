@@ -53,7 +53,7 @@ function add1km() {
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-      'http://raw.githubusercontent.com/sebastian-ch/mvtTest/master/t/{z}/{x}/{y}.pbf'
+        '/t/{z}/{x}/{y}.pbf'
       //'http://localhost:8080/t/{z}/{x}/{y}.pbf'
       //'http://localhost:8080/tiles5/{z}/{x}/{y}.pbf'
     //'https://sebastian-ch.github.io/sidsDataTest/data/tesg/{z}/{x}/{y}.pbf'
