@@ -53,10 +53,9 @@ function add1km() {
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-        'https://github.com/SIDS-Dashboard/mvtTest/tree/main/t/{z}/{x}/{y}.pbf'
       //'http://localhost:8080/t/{z}/{x}/{y}.pbf'
       //'http://localhost:8080/tiles5/{z}/{x}/{y}.pbf'
-    //'https://sebastian-ch.github.io/sidsDataTest/data/tesg/{z}/{x}/{y}.pbf'
+    'https://sebastian-ch.github.io/sidsDataTest/data/t/{z}/{x}/{y}.pbf'
     ],
     'minzoom': 0,
     'maxzoom': 10
