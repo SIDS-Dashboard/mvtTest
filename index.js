@@ -7,7 +7,7 @@ mapboxgl.accessToken =
     //style: 'mapbox://styles/mapbox/light-v10', //?optimize=true
     style: 'mapbox://styles/mapbox/light-v10', 
     center: [-71.4, 19.1], // starting position [lng, lat]
-    zoom: 9,
+    zoom: 7,
     //pitch: 55
   });
 
@@ -48,17 +48,24 @@ function add1km() {
 
     }) */
 
-  
+  /*map.on('idle', function(e) {
+    console.log(e);
+    if(e.target._fullyLoaded) {
+      console.log('hey')
+    }
+  }) */
 
   map.addSource('hex', {
     'type': 'vector',
     'tiles': [
-      //'http://localhost:8080/t/{z}/{x}/{y}.pbf'
-      //'http://localhost:8080/tiles5/{z}/{x}/{y}.pbf'
-    'https://sebastian-ch.github.io/sidsDataTest/data/t/{z}/{x}/{y}.pbf'
+      //'http://localhost:8080/t1/{z}/{x}/{y}.pbf'
+      //'http://localhost:8080/t1/{z}/{x}/{y}.pbf'
+    'https://sebastian-ch.github.io/sidsDataTest/data/tile-hex-5km/{z}/{x}/{y}.pbf'
+    
+    //'http://localhost:8080/tile-admin1/{z}/{x}/{y}.pbf'
     ],
-    'minzoom': 0,
-    'maxzoom': 10
+    /*'minzoom': 6,
+    'maxzoom': 9 */
     });
 
     map.addLayer(
@@ -67,13 +74,14 @@ function add1km() {
       'type': 'fill',
       'source': 'hex',
       //'source-layer': 'drnew',
-      'source-layer': 'hex1',
+      'source-layer': 'hex-5km',
+      //'source-layer': 'hex-1km',
       'min-zoom': 6,
-      'max-zoom': 10,
+      'max-zoom': 9,
       //'filter': ['>=', '1b2', 0],
       
       'paint': {
-        'fill-color': [
+        /*'fill-color': [
           'interpolate',
           ['linear'],
           ['get', '1b2'],
@@ -83,16 +91,17 @@ function add1km() {
           .079, colors[3],
           .199, colors[4],
           
-          ],
+          ], */
+          'fill-color': 'purple',
           //'fill-color': match,
-        'fill-opacity': 0.8,
+        'fill-opacity': 0.6,
         
         }
       },
       );
 
    // })
-      console.log(map.getStyle().layers)
+      //console.log(map.getStyle().layers)
 
 }
 
