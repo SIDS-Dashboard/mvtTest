@@ -7,7 +7,7 @@ mapboxgl.accessToken =
     //style: 'mapbox://styles/mapbox/light-v10', //?optimize=true
     style: 'mapbox://styles/mapbox/light-v10', 
     center: [-71.4, 19.1], // starting position [lng, lat]
-    zoom: 7,
+    zoom: 4,
     //pitch: 55
   });
 
@@ -70,7 +70,7 @@ function addSub() {
       type: 'circle',
       paint: {
         'circle-color': 'red',
-        'circle-radius': 12
+        'circle-radius': 8
       }
     })
 
