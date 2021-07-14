@@ -15,7 +15,9 @@ mapboxgl.accessToken =
   map.on("load", function () {
 
     
-    add1km();
+   // add1km();
+
+    addSub();
     
 
   })
@@ -28,12 +30,93 @@ var breaks = []
 var colors = ['#edf8fb', '#b2e2e2','#66c2a4','#2ca25f', '#006d2c' ]
 
 
+function addSub() {
 
-function add1km() {
+  var randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+  d3.json('./cable-geo.json').then(function(d) {
+
+
+    console.log(d);
+
+    map.addSource('cable', {
+      type: 'geojson',
+      data: d
+    })
+
+    map.addLayer({
+      'id': 'sub',
+      'type': 'line',
+      'source': 'cable',
+      'paint': {
+        
+        'line-color': ['get', 'color'],
+        'line-width': 3
+      
+      }
+    })
+  })
+
+
+  d3.json('./landing-point-geo.json').then(function(data) {
+    map.addSource('dots', {
+      type: 'geojson',
+      data: data
+    })
+
+    map.addLayer({
+      id: 'dots',
+      source: 'dots',
+      type: 'circle',
+      paint: {
+        'circle-color': 'red',
+        'circle-radius': 12
+      }
+    })
+
+
+  })
+
+
+
+
+}
+
+/*function add1km() {
   console.log('hi')
 
+  d3.buffer('hex10.pbf').then(function(data) {
+    var gjn = geobuf.decode(new Pbf(data))
 
-  var match = ['match', ['get', 'hexid']]
+    map.addSource('hex10', {
+      type: 'geojson',
+      data: gjn
+    })
+
+    map.addLayer({
+      'id': 'hex10',
+      'type': 'fill',
+      'source': 'hex10',
+      'paint': {
+        
+        'fill-color': 'green',
+        //'fill-color': match,
+      'fill-opacity': 0.6,
+      
+      }
+
+    })
+
+  })
+ */
+
+  
+
+
+  
+
+
+
 
   /*d3.csv('hex1.csv').then(function(data){
 
@@ -55,17 +138,18 @@ function add1km() {
     }
   }) */
 
-  map.addSource('hex', {
+  /*map.addSource('hex', {
     'type': 'vector',
     'tiles': [
       //'http://localhost:8080/t1/{z}/{x}/{y}.pbf'
       //'http://localhost:8080/t1/{z}/{x}/{y}.pbf'
-    'https://sebastian-ch.github.io/sidsDataTest/data/tile-hex-5km/{z}/{x}/{y}.pbf'
+    //'https://sebastian-ch.github.io/sidsDataTest/data/tile-hex-5km/{z}/{x}/{y}.pbf'
     
-    //'http://localhost:8080/tile-admin1/{z}/{x}/{y}.pbf'
+    'http://localhost:8080/localTiles/tiles1/{z}/{x}/{y}.pbf'
     ],
-    /*'minzoom': 6,
-    'maxzoom': 9 */
+
+    //url: 'mapbox://sebastian-ch.bzzfyhz9'
+    
     });
 
     map.addLayer(
@@ -73,37 +157,27 @@ function add1km() {
       'id': 'hex',
       'type': 'fill',
       'source': 'hex',
+      'source-layer': 'hex10-3857-a46wc4',
       //'source-layer': 'drnew',
-      'source-layer': 'hex-5km',
+      //'source-layer': 'dropped4',
       //'source-layer': 'hex-1km',
-      'min-zoom': 6,
-      'max-zoom': 9,
+     
       //'filter': ['>=', '1b2', 0],
       
       'paint': {
-        /*'fill-color': [
-          'interpolate',
-          ['linear'],
-          ['get', '1b2'],
-          .011, colors[0],
-          .028, colors[1],
-          .049, colors[2],
-          .079, colors[3],
-          .199, colors[4],
-          
-          ], */
+        
           'fill-color': 'purple',
           //'fill-color': match,
         'fill-opacity': 0.6,
         
         }
       },
-      );
+      ); */
 
    // })
       //console.log(map.getStyle().layers)
 
-}
+
 
 
 
