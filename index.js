@@ -85,20 +85,24 @@ function addSub() {
 function turnTo() {
 
 
+  //query rendered features
   var feats = map.queryRenderedFeatures({
         layers: ['jamaica']
       })
 
   console.log(feats)
 
+
+    //convert rendered features to geojson format
   var fc = turf.featureCollection(feats);
 
   console.log(fc);
 
 
+  //add new source 
   map.addSource('newone', {
     type: 'geojson',
-    data: fc
+    data: fc //data is the new geojson 
   })
 
 
